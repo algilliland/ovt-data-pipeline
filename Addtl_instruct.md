@@ -21,6 +21,6 @@ When creating a new pipeline instance for a different ontology, the headers conf
 
 **Creating a new preprocessor** 
 
-Most likely you will have to create a preprocessor for each dataset you are integrating, so that you can create the unique mapping from the input data to the expected configuration. 
- 
+Most likely you will have to create a preprocessor for each dataset you are integrating, so that you can create the unique mapping from the input data to the expected configuration. The easiest way to do this is to create a PreProcessor that inherits from the AbstractPreProcessor. The AbstractPreprocesser contains the functionality to ---. 
+
 
