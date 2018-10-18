@@ -27,7 +27,9 @@ class AbstractPreProcessor(object):
 
     The __input_dir is available as a private class attribute.
     """
-    headers = ['record_id', 'has_length', 'has_life_stage', 'has_mass', 'has_sex', 'length_in_mm', 'length_type', 'length_units_inferred', 'mass_in_g', 'mass_units_inferred']
+    headers = ['record_id', 'occurence_id', 'event_date', 'year', 'latitude', 'longitude', 'genus', 'subgenus',
+            'specific_epithet', 'has_length', 'has_life_stage', 'has_mass', 'has_sex', 'length_in_mm', 'length_type',
+            'length_units_inferred', 'mass_in_g', 'mass_units_inferred']
 
     def __init__(self, input_dir, output_dir):
         self.input_dir = input_dir
