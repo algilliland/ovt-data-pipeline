@@ -8,7 +8,6 @@ import multiprocessing
 
 import uuid
 import pandas as pd
-# TODO: fix import error...
 from preprocessor import AbstractPreProcessor
 
 # haslength, haslifestage, hasmass, hassex
@@ -18,9 +17,7 @@ COLUMNS_MAP = {
         'eventdate' : 'event_date',
         'genus' : 'genus',
         'haslength' : 'has_length',
-        'haslifestage' : 'has_life_stage',
         'hasmass' : 'has_mass',
-        'hassex' : 'has_sex',
         'lengthinmm' : 'length_in_mm',
         'lengthtype' : 'length_type',
         'lengthunitsinferred' : 'length_units_inferred',
@@ -35,13 +32,13 @@ COLUMNS_MAP = {
 class PreProcessor(AbstractPreProcessor):
     def _process_data(self):
         num_processes = multiprocessing.cpu_count()
-        chunk_size = 10 # TODO: increase
+        chunk_size = 10000
         data = pd.read_csv(self.input_dir, sep=',', header=0,
-                usecols=['haslength', 'haslifestage', 'hasmass', 'hassex',
-                'lengthinmm', 'lengthtype', 'lengthunitsinferred', 'massing',
-                'massunitsinferred', 'decimallatitude', 'decimallongitude',
-                'eventdate', 'genus', 'occurrenceid', 'specificepithet',
-                'subgenus', 'year'], chunksize=chunk_size * num_processes)
+                usecols=['haslength', 'hasmass', 'lengthinmm', 'lengthtype',
+                    'lengthunitsinferred', 'massing', 'massunitsinferred',
+                    'decimallatitude', 'decimallongitude','eventdate', 'genus',
+                    'occurrenceid', 'specificepithet', 'subgenus', 'year'],
+                chunksize=chunk_size * num_processes)
 
         for chunk in data:
             chunks = [chunk.ix[chunk.index[i:i + chunk_size]] for i in range(0, chunk.shape[0], chunk_size)]
@@ -57,6 +54,3 @@ class PreProcessor(AbstractPreProcessor):
         return data.rename(columns=COLUMNS_MAP)
 
 
-# TODO: change input for input_dir and read_csv input file path 
-preprocessor = PreProcessor('../../../../VNTraitsForFuTRES_subset.csv', "out_dir")
-preprocessor.run()
