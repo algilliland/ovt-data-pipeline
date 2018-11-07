@@ -16,7 +16,7 @@ QUERY_FETCHER_REPO_URL = 'http://repo.biocodellc.com/repository/maven-public/org
 
 DEFAULT_PROJECT_BASE = "projects"
 DEFAULT_BASE_DIR = os.path.join(os.path.dirname(__file__), '../projects')
-
+# No ControlledVocabulary currently in place - was utilized for phenophase reasoning
 VALID_RULES = ['RequiredValue', 'ControlledVocabulary', 'UniqueValue', 'Integer', 'Float']
 DEFAULT_CONFIG_DIR = os.path.join(os.path.dirname(__file__), "../config")
 # NOTE: the default ontology used here is located at github.  Be wary of too many connections
