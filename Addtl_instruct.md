@@ -49,9 +49,8 @@ Basically if you hit an import error from a import dependency google installing 
 
 ## Updating the Pipeline to Accept a New Ontology 
 
-Ontopilot is utilized to manage ontologies, you can check out their wiki or this basic ontology development reference page to begin the process of creating a new ontology. https://github.com/stuckyb/ontopilot/wiki/Ontology-development#column-names-for-all-ontology-entities
+Ontopilot is utilized to manage ontologies, you can check out their [wiki](https://github.com/stuckyb/ontopilot/wiki/Ontology-development#overview).
 
 Once you have your ontology completed, you are able to integrate it with the data pipeline. process/config.py expects a default ontology to be referenced. The OVT's default ontology is hosted on GitHub. 
 
-
-
+Additional preprocessing can be done to accomplish reasoning that is intractable with ELK reasoning. For example, ppo-data-pipeline adds additional reasoning on the phenophase_descriptions to account for presence traits. 

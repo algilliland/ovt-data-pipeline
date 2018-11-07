@@ -21,7 +21,7 @@ The processing pipeline implements the following steps:
     custom `PreProcessor` for each project to be ingested. The `preprocessor` module contains an abstract class 
     `AbstractPreProcessor` that can be inherited by the project preprocessor.  We suggest adapting one of the projects included 
     in this package as a template from which to start.  The purpose of the pre-processor is to configure the data to conform to the 
-    structure specified in the [headers configuration file](https://github.com/biocodellc/ppo-data-pipeline/blob/master/config/headers.csv).  
+    structure specified in the [headers configuration file](https://github.com/algilliland/ovt-data-pipeline/blob/master/config/headers.csv).  
     
 2. Triplifier
 
@@ -41,7 +41,7 @@ The processing pipeline implements the following steps:
 3. Reasoning
 
     This step uses the [ontopilot](https://github.com/stuckyb/ontopilot) project to perform inferencing using the
-    [Plant Phenology Ontology](https://github.com/PlantPhenoOntology/ppo)
+    [Ontology for Vertebrate Traits](https://github.com/futres/ovt).
     
 4. Rdf2Csv
 
@@ -252,7 +252,7 @@ The following files are required:
         The identifier root for each unique entity. This is typically an [BCID](http://biscicol.org) identifier
     
 ##### <a name="mapping.csv"></a>
-2. `mapping.csv` (found in each project directory)
+2. `mapping.csv` (found in the config directory)
 
     * `column`
     
@@ -280,23 +280,12 @@ The following files are required:
     * `object_entity_alias`
     
         The alias of the entity which is the object of this relationship
-        
-##### <a name="descriptions"></a>
-4. <a name="pheno_descriptions"></a>`phenophase_descriptions.csv` (found in each project directory)
+               
+4. `excluded_types.csv` (found in the config directory) - Used by ontopilot
 
-    * `field`
-    
-        The name of the field in the input csv file
-        
-    * `defined_by`
-    
-        The uri which defines the field
-        
-5. `excluded_types.csv` - Used by ontopilot
+5. `reasoner.conf` (found in the config directory) - ontopilot inferencing configuration file
 
-6. `reasoner.conf` - ontopilot inferencing configuration file
-
-7. `headers.csv` - specifies the input data headers we except to see after preprocessing the data
+6. `headers.csv` (found in the config directory) - specifies the input data headers we except to see after preprocessing the data
     
 
 The following files are optional:
