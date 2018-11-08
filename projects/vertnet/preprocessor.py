@@ -36,7 +36,7 @@ class PreProcessor(AbstractPreProcessor):
                 usecols=['haslength', 'hasmass', 'lengthinmm', 'lengthtype',
                     'lengthunitsinferred', 'massing', 'massunitsinferred',
                     'decimallatitude', 'decimallongitude','eventdate', 'genus',
-                    'occurrenceid', 'specificepithet', 'subgenus', 'year'],
+                    'occurrenceid', 'specificepithet', 'year'],
                 chunksize=chunk_size * num_processes)
 
         for chunk in data:
