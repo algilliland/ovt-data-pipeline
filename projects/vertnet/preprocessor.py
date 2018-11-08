@@ -10,23 +10,22 @@ import uuid
 import pandas as pd
 from preprocessor import AbstractPreProcessor
 
-# haslength, haslifestage, hasmass, hassex
+# haslength, haslifestage
 COLUMNS_MAP = {
+        'occurrenceid : 'occurrence_id',
+        'genus' : 'genus',
+        'specificepithet' : 'specific_epithet',
+        'eventdate' : 'event_date',
+        'year' : 'year',
         'decimallatitude' : 'latitude',
         'decimallongitude' : 'longitude',
-        'eventdate' : 'event_date',
-        'genus' : 'genus',
         'haslength' : 'has_length',
-        'hasmass' : 'has_mass',
-        'lengthinmm' : 'length_in_mm',
         'lengthtype' : 'length_type',
+        'lengthinmm' : 'length_in_mm',
         'lengthunitsinferred' : 'length_units_inferred',
+        'hasmass' : 'has_mass',
         'massing' : 'mass_in_g',
-        'massunitsinferred' : 'mass_units_inferred',
-        'occurrenceid' : 'occurrence_id',
-        'specificepithet' : 'specific_epithet',
-        'subgenus' : 'subgenus',
-        'year' : 'year'
+        'massunitsinferred' : 'mass_units_inferred'
 }
 
 class PreProcessor(AbstractPreProcessor):
