@@ -1,0 +1,19 @@
+column,uri,entity_alias,notes
+record_id,http://rs.tdwg.org/dwc/terms/EventID,organismalTraitObservingProcess,
+occurence_id,http://rs.tdwg.org/dwc/terms/occurenceID,vertebrateOrganism,We hope that each organism has a unique occurence ID
+event_date,http://rs.tdwg.org/dwc/terms/eventDate,organismalTraitObservingProcess,
+year,http://rs.tdwg.org/dwc/terms/year,organismalTraitObservingProcess,
+latitude,http://rs.tdwg.org/dwc/terms/decimalLatitude,organismalTraitObservingProcess,
+longitude,http://rs.tdwg.org/dwc/terms/decimalLongitude,organismalTraitObservingProcess,
+genus,http://rs.tdwg.org/dwc/terms/genus,vertebrateOrganism,
+subgenus,http://rs.tdwg.org/dwc/terms/subgenus,vertebrateOrganism,
+specific_epithet,http://rs.tdwg.org/dwc/terms/specificEpithet,vertebrateOrganism,
+has_length YES NO
+has_life_stage REMOVE THIS COLUMN
+has_mass YES NO
+has_sex REMOVE THIS COLUMN
+length_in_mm,{has value},scalarMeasurementDatum,
+length_type,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,vertebrateScalarTrait,"Using rdf:type indicates the values will be object properties, in this case defined by a list association in rules.csv."
+length_units_inferred,{units inferred},scalarMeasurementDatum,
+mass_in_g,{has value},scalarMeasurementDatum,
+mass_units_inferred,{units inferred},scalarMeasurementDatum,

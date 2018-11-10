@@ -1,0 +1,5 @@
+subject_entity_alias,predicate,object_entity_alias,notes
+vertebrateScalarTrait,{quality of},vertebrateOrganism,
+vertebrateScalarTrait,{has quality datum},scalarMeasurementDatum,
+organismalTraitObservingProcess,{has_specified_output},scalarMeasurementDatum,
+vertebrateOrganism,{is_specified_input_of},organismalTraitObservingProcess,
