@@ -1,5 +1,5 @@
 subject_entity_alias,predicate,object_entity_alias,notes
-vertebrateScalarTrait,{quality of},vertOrganism,
-vertebrateScalarTrait,{has quality datum},scalarMD,
-organismalTraitObsProc,{has_specified_output},scalarMD,
-vertOrganism,{is_specified_input_of},organismalTraitObsProc,
+vertebrateScalarTrait,{quality of},vertebrateOrganism,
+vertebrateScalarTrait,{has quality datum},scalarMeasurementDatum,
+organismalTraitObsProc,{has_specified_output},scalarMeasurementDatum,
+vertebrateOrganism,{is_specified_input_of},organismalTraitObsProc,
