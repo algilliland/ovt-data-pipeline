@@ -4,4 +4,4 @@ event_date,http://rs.tdwg.org/dwc/terms/eventDate,organismalTraitObservingProces
 year,http://rs.tdwg.org/dwc/terms/year,organismalTraitObservingProcess,
 latitude,http://rs.tdwg.org/dwc/terms/decimalLatitude,organismalTraitObservingProcess,
 longitude,http://rs.tdwg.org/dwc/terms/decimalLongitude,organismalTraitObservingProcess,
-length_in_mm,{has value},scalarMeasurementDatum,
+genus,http://rs.tdwg.org/dwc/terms/genus,vertebrateOrganism,
