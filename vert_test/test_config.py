@@ -22,8 +22,9 @@ def test_config(tmpdir):
     # verify that none existent attribute returns None
     assert config.doesnt_exist is None
 
+    print(len(config.rules))
     # verify rules were parsed 5 rules + 1 default
-    assert len(config.rules) == 6 # TODO: confirm rule length
+    assert len(config.rules) == -1 # TODO: confirm rule length
     # should split | delimited rule columns
     assert isinstance(config.rules[0]['columns'], list)
     # should assign default error level
