@@ -4,6 +4,7 @@ from process.config import Config
 
 
 def test_config(tmpdir):
+    print('Hello World!')
     base_dir = os.path.dirname(__file__)
     config = Config( {
         'output_dir': str(tmpdir),
