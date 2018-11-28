@@ -71,10 +71,10 @@ def test_should_generate_valid_triples(config):
     # specific.  We need to know we found just one important instance and don't compare that line here
     foundImportInstance = False
     for t in triples:
-        if t.startswith('<urn:importInstance>'): 
+        if t.startswith('<urn:importInstance>'):
             assert foundImportInstance is False
             foundImportInstance = True
-        else: 
+        else:
             assert t in expected_triples
 
     assert foundImportInstance is True

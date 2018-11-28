@@ -44,11 +44,11 @@ def test_should_return_false_for_invalid_data(config, capfd):
 
         # verify output
         l.check(
-            ("root", "INFO", "ERROR: Value `invalid_name` in column `phenophase_name` is not in the controlled vocabulary list `phenophase_descriptions.csv`"),
             ("root", "INFO", "ERROR: Duplicate values [1] in column `record_id`"),
-            ("root", "INFO", "ERROR: Value missing in required column `day_of_year`"),
+            ("root", "INFO", "ERROR: Value missing in required column `event_date`"),
             ("root", "INFO", "ERROR: Value missing in required column `longitude`"),
-            ("root", "INFO", "WARNING: Value missing in required column `source`"),
+            ("root", "INFO", "WARNING: Value missing in required column `genus`"),
+            ("root", "INFO", "WARNING: Value missing in required column `specific_epithet`"),
             ("root", "INFO", "WARNING: Value `invalid_year` in column `year` is not an integer"),
             ("root", "INFO", "ERROR: Value `string` in column `latitude` is not a float"),
             ('root', 'DEBUG', 'dropping invalid data')
