@@ -1,2 +1,2 @@
-record_id,year,day_of_year,latitude,longitude,source,phenophase_name
-1,1988,120,-12.99,13.00,me,Reproductive
+record_id,occurence_id,event_date,year,latitude,longitude,genus,subgenus,specific_epithet,has_length,has_mass,length_in_mm,length_type,length_units_inferred,mass_in_g,mass_units_inferred
+1,01,2001-06-15,2001.0,36.6676833,-106.47068329999999,Thamnophis,,elegans,1,0,391.0,snout-vent length,0.0,,,

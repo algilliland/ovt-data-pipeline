@@ -2,9 +2,7 @@ import pytest
 import os
 from process.config import Config
 
-
 def test_config(tmpdir):
-    print('Hello World!')
     base_dir = os.path.dirname(__file__)
     config = Config( {
         'output_dir': str(tmpdir),
@@ -24,47 +22,39 @@ def test_config(tmpdir):
     # verify that none existent attribute returns None
     assert config.doesnt_exist is None
 
+    print(len(config.rules))
     # verify rules were parsed 5 rules + 1 default
-    assert len(config.rules) == 6
+    assert len(config.rules) == -1 # TODO: confirm rule length
     # should split | delimited rule columns
     assert isinstance(config.rules[0]['columns'], list)
     # should assign default error level
     for rule in config.rules:
         assert rule['level'] in ["error", "warning"]
 
-    # should parse phenophase_descriptions file
-    descriptions = config.lists['phenophase_descriptions.csv']
-    assert {'field': 'Reproductive', 'defined_by': 'http://purl.obolibrary.org/obo/PPO_0002025'} in descriptions
-    assert {'field': 'Flowering', 'defined_by': 'http://purl.obolibrary.org/obo/PPO_0002035'} in descriptions
-    assert {'field': 'Fruiting', 'defined_by': 'http://purl.obolibrary.org/obo/PPO_0002045'} in descriptions
-
-    # should be 3 valid phenophase_descriptions list items
-    assert len(descriptions) == 3
-    assert len(config.lists['phenophase_descriptions.csv']) == 3
-
     # should parse entities and perform label substitution
     assert {
-            'alias': 'plantStructurePresence',
-            'concept_uri': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-            'unique_key': 'record_id',
-            'identifier_root': 'http://n2t.net/ark:/21547/Anl2',
-            'columns': [('phenophase_name', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type')]
+            'alias': 'vertebrateOrganism',
+            'concept_uri': 'http://purl.obolibrary.org/obo/NCBITaxon_7742',
+            'unique_key': 'occurence_id',
+            'identifier_root': 'urn:vertOrganism',
+            'columns': [('genus', 'http://rs.tdwg.org/dwc/terms/genus')]
         } in config.entities
+
     assert {
-            'alias': 'phenologicalObservingProcess',
-            'concept_uri': 'http://purl.obolibrary.org/obo/BCO_0000003',
-            'unique_key': 'record_id',
-            'identifier_root': 'http://n2t.net/ark:/21547/Anm2',
+            'alias': 'organismalTraitObsProc',
+            'concept_uri': 'http://purl.obolibrary.org/obo/OVT_0000002',
+            'unique_key': 'occurence_id',
+            'identifier_root': 'urn:traitObsProc',
             'columns': [('record_id', 'http://rs.tdwg.org/dwc/terms/EventID'), ('latitude', 'http://rs.tdwg.org/dwc/terms/decimalLatitude'),
                         ('longitude', 'http://rs.tdwg.org/dwc/terms/decimalLongitude'), ('year', 'http://rs.tdwg.org/dwc/terms/year'),
-                        ('day_of_year', 'http://rs.tdwg.org/dwc/terms/startDayOfYear'), ('source', 'http://purl.org/dc/elements/1.1/creator')]
+                        ('event_date', 'http://rs.tdwg.org/dwc/terms/even')]
         } in config.entities
 
     assert len(config.entities) == 2
 
     # should parse relations and perform label substitution
     assert {
-            'subject_entity_alias': 'plantStructurePresence',
+            'subject_entity_alias': 'vertebrateOrganism',
             'predicate': 'http://purl.obolibrary.org/obo/OBI_0000295',
-            'object_entity_alias': 'phenologicalObservingProcess'
+            'object_entity_alias': 'organismalTraitObsgProc'
         } in config.relations
