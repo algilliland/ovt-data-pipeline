@@ -12,7 +12,7 @@ from preprocessor import AbstractPreProcessor
 
 # haslength, haslifestage
 COLUMNS_MAP = {
-        'occurrenceid : 'occurrence_id',
+        'occurrenceid' : 'occurrence_id',
         'genus' : 'genus',
         'specificepithet' : 'specific_epithet',
         'eventdate' : 'event_date',
