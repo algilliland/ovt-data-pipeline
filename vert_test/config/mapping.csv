@@ -1,7 +1,0 @@
-column,uri,entity_alias,notes
-record_id,http://rs.tdwg.org/dwc/terms/EventID,organismalTraitObservingProcess,
-event_date,http://rs.tdwg.org/dwc/terms/eventDate,organismalTraitObservingProcess,
-year,http://rs.tdwg.org/dwc/terms/year,organismalTraitObservingProcess,
-latitude,http://rs.tdwg.org/dwc/terms/decimalLatitude,organismalTraitObservingProcess,
-longitude,http://rs.tdwg.org/dwc/terms/decimalLongitude,organismalTraitObservingProcess,
-genus,http://rs.tdwg.org/dwc/terms/genus,vertebrateOrganism,

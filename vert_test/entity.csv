@@ -1,3 +1,0 @@
-alias,concept_uri,unique_key,identifier_root,notes
-organismalTraitObsProc,http://purl.obolibrary.org/obo/OVT_000000x,record_id,urn:traitObservingProcess,
-scalarMeasurementDatum,http://purl.obolibrary.org/obo/OVT_000000x,record_id,urn:scalarMeasurementDatum,
