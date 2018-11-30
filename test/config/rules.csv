@@ -1,5 +1,5 @@
 rule,columns,level,list
-UniqueValue,record_id,error,
-RequiredValue,genus|specific_epithet|event_date|year|latitude|longitude|record_id|,error,
+UniqueValue,recordid,error,
+RequiredValue,genus|specificepithet|eventdate|year|latitude|longitude|record_id,error,
 Integer,year,error,
-Float,latitude|longitude,error,
+Float,decimallatitude|decimallongitude,error,
