@@ -22,7 +22,7 @@ When you run the install and set up of your virtual environment, make sure that 
 
 Confirm you are on the correct python version using `python --version`. 
 
-If you run into issues with switching python versions, see if (this)[https://github.com/pyenv/pyenv/issues/896] resolves the issue. 
+If you run into issues with switching python versions, see if [this](https://github.com/pyenv/pyenv/issues/896) resolves the issue. 
 
 Currently, the ovt tests are not complete, so you cannot test everything works as expected by running `./pytest.sh`. 
 
@@ -33,7 +33,7 @@ As said in the main instructions, the process should be run from the root direct
 Look at [Usage](https://github.com/algilliland/ovt-data-pipeline#usage) on the main readme in order to see the different ways you can run the pipeline. 
 
 You are able to run a single .py file by 
-When an import error occurs with the message 'module name cannot be found' and the module is a locally created module, try running with PYTHONPATH=../ python test_config.py. This instructs python to check the directory above as well for the module. 
+When an import error occurs with the message 'module name cannot be found' and the module is a locally created module, try running with `PYTHONPATH=../ python test_config.py`. This instructs python to check the directory above as well for the module. 
 
 When an import error occurs for a package not created in ovt, it indicates the package was not available when python tried to run the file depending on it. Try fixing this error through a pip install for the package. This will attempt to download and install the package. 
 
@@ -65,6 +65,7 @@ If you follow the shown usage for multiprocessing you should run into no issues 
 
 ## Step Two: Triplifier
 
+
 ## Step Three: Reasoning 
 
 **Updating the Pipeline to Accept a New Ontology**
@@ -77,21 +78,22 @@ Additional preprocessing can be done to accomplish reasoning that is intractable
 
 ## Step Four: RdfCsv
 
+The conversion from the Resources Description Framework (RDF) to the Comma Separated Value (CSV) output has not been implemented yet. See point 4 of [ppo's Running the pipeline](https://github.com/biocodellc/ppo-data-pipeline/blob/master/README.md#running-the-pipeline) for information relating to formatting the output. 
 
 ## Step Five: Data Loading
 
-The data loading step has not yet been reached for the ovt pipeline, see the point 5 of [ppo's Running the pipeline](https://github.com/biocodellc/ppo-data-pipeline/blob/master/README.md#running-the-pipeline) for information relating to data loading. 
+The data loading step has not yet been reached for the ovt pipeline, see point 5 of [ppo's Running the pipeline](https://github.com/biocodellc/ppo-data-pipeline/blob/master/README.md#running-the-pipeline) for information relating to data loading. 
 
 ## Testing 
 It is important to check all of the pipeline connections in addition to completing data checks. We run these tests by using the purest tool. When running all the pytests, you are ensuring your configurations set up your pipeline correctly and all data validation is working correctly. 
 
 In order to test the new instance you have created you will need to update the old test files.
 
-The test directory under the main pipeline contains the tests which check the configurations, triplifier and validity via the rules being applied appropriately. Each of these corresponds to a .py file in test. For both the ppo and the ovt we used simplified input files and configurations to test the pipeline connections were working. The data-pipeline results can be 
+The test directory under the main pipeline contains the tests which check the the pipeline is working correctly and data validation is occurring correctly. The validity test checks the rules in rules.csv are being applied appropriately. For both the ppo-pipeline and the ovt-pipeline, we used simplified input files and configurations to test the pipeline connections and validation were working. 
 
-These tests rely on the config subdirectory to check the connections of the pipeline. The config directory should be a copy of the main config file, this is so we can run tests with a pseudo-root (explain differently?). This directory also has an additional file called pop-reasoned-no-imports.owl. 
+These tests rely on the config subdirectory to check the connections of the pipeline. The config directory should be a copy of the main config file, this is so we can run tests from the pseudo-root and mimic the setup of our pipeline. 
 
-pytest is the package that we use to support automated testing of the pipeline. It searches for any files starting with test_ or ending with _test. This is a recursive search that will check all subdirectories from the point you start running your tests from. This is important to note when you start duplicating your test files. 
+pytest is the package that we use to support automated testing of the pipeline. It searches for any files starting with test_ or ending with _test. This is a recursive search that will check all subdirectories from the point you start running your tests from. This is important to note when you start duplicating your test files to ensure you get the number of tests you are expecting. 
 
 ___
 
@@ -103,6 +105,6 @@ The test_triplifier.py, fetch_reasoned.sparql and reasoner.config. still need to
 
 The Data Loading step for using elastic search and blaze graph have not been updated for ovt. 
 
+Additionally, there are potential changes to be made in the preprocessor to account for mapping from the input data to class names based on the ontology that needs to occur during triplification. In the pro-pipeline this was done with phenophase_descriptions.csv and mapping.csv, there is currently no file in the ovt-pipeline with the same purpose as phenophase_descriptions.csv, but it will have to be added. 
+
 There are several areas in the codebase where identical files are duplicated and stored in different locations. For example, test/data/invalid_input.csv was almost identical to test/invalid_data.csv. Another example is relations.csv and entity.csv existing in multiple locations. I did not determine which copies were necessary and which were redundant, I simply copied the ppo structure. 
-
-
