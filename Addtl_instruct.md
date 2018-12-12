@@ -11,10 +11,12 @@ Additional instructions to help those unfamiliar with the data pipeline in order
 ## Getting Started 
 
 ** Familiarize Yourself with the Codebase ** 
+
 You can begin by cloning or forking this repository (or the ppo pipeline) and installing it on your laptop or server.  The next step is reading through the rest of the documentation and familiarizing yourself with the [configuration files](https://github.com/biocodellc/ppo-data-pipeline/blob/master/README.md#config-files) 
 
 ** Set Up Your Environment ** 
-See [Dependencies] (https://github.com/algilliland/ovt-data-pipeline#dependencies) on the main readme in order to begin setup of your environment. 
+
+See [Dependencies](https://github.com/algilliland/ovt-data-pipeline#dependencies) on the main readme in order to begin setup of your environment. 
 
 Discuss setting flags for Pyenv and also switching/checking python versions
 https://github.com/pyenv/pyenv/issues/896
@@ -23,7 +25,7 @@ https://github.com/pyenv/pyenv/issues/896
 
 As said in the main instructions, the process should be run from the root directory (vto-data-pipeline). Run the entire pipeline using `python -m process`. The -m option tells python process is a module.  
 
-Look at [Usage](https://github.com/algilliland/ovt-data-pipeline#usage)on the main readme in order to see the different ways you can run the pipeline. 
+Look at [Usage](https://github.com/algilliland/ovt-data-pipeline#usage) on the main readme in order to see the different ways you can run the pipeline. 
 
 You are able to run a single .py file by 
 When an import error occurs with the message 'module name cannot be found' and the module is a locally created module, try running with PYTHONPATH=../ python test_config.py. This instructs python to check the directory above as well for the module. 
