@@ -57,14 +57,16 @@ You will also need to adapt the AbstractPreProcessor for your data. Inside the A
 
 **Creating a New Preprocessor** 
 
-Most likely you will have to create a new preprocessor for each dataset you are integrating, so that you can create the unique mapping from the input data to the expected configuration. The easiest way to do this is to create a PreProcessor that inherits from the AbstractPreProcessor. The AbstractPreprocesser contains the functionality to initialize the preprocessor, run the preprocessor, and basic IO. It is initialized with the input directory, output directory and sets the output file as data.csv in the output directory. The run method will check to see if the output directory exists and if it does not, it will create it. Then it will write the column headers to the csv, these are the labels you have placed in your headers list. The next call in run is to process_data, which is not implemented in the AbstractPreprocessor. You must implement process_data in your preprocessor so that your unique data can be formatted. Your process_data method needs to read your data, map the selected trait from each record to the expected column and it writes your data. See Pandas documentation for help using the read/write calls (read_csv/to_csv).
+Most likely you will have to create a new preprocessor for each dataset you are integrating, so that you can create the unique mapping from the input data to the expected configuration. The easiest way to do this is to create a `PreProcessor` that inherits from the `AbstractPreProcessor`. The `AbstractPreprocesser` contains the functionality to initialize the preprocessor, run the preprocessor, and basic IO. It is initialized with the input directory, output directory and sets the output file as `data.csv` in the output directory. The run method will check to see if the output directory exists and if it does not, it will create it. Then it will write the column headers to the csv, these are the labels you have placed in your headers list. The next call in run is to process_data, which is not implemented in the `AbstractPreprocessor`. You must implement process_data in your preprocessor so that your unique data can be formatted. Your process_data method needs to read your data, map the selected trait from each record to the expected column and it writes your data. See Pandas documentation for help using the read and write calls which correspond to read_csv and to_csv.
 
-There are a few different points that must be updated so that the new ontology and data set are able to be processed. In process/config.py, the DEFAULT_HEADERS must be updated. These default headers are the columns that will be selected for if headers are not specified in the abstract preprocessor.py. 
+There are a few different points that must be updated so that the new ontology and data set are able to be processed. In `process/config.py`, the DEFAULT_HEADERS must be updated. These default headers are the columns that will be selected for if headers are not specified in the abstract `preprocessor.py`. 
 
 If you follow the shown usage for multiprocessing you should run into no issues with having multiprocessing in your preprocessor. When dealing with large data sets, it is vital to enable multiprocessing in order to take advantage of all CPUs available. As long as your environment is set to use the recommended python version 3.5.1, you should not run into any issues. 
 
 ## Step Two: Triplifier
+The readme provides an overview of the Triplifier step. See point 2 of [ppo's Running the pipeline](https://github.com/biocodellc/ppo-data-pipeline/blob/master/README.md#running-the-pipeline). Additionally, the configuration files are well described in the readme. 
 
+However, it is important to note that there is a configuration file, `ovt-data-pipeline/config` that contains some of the configuration files discussed and some files are in the specific project folder, `ovt-data-pipeline/projects/project_name`. The file placement for ovt-pipeline follows the placement shown in the most recent project in ppo-datapipeline, the herbarium project. 
 
 ## Step Three: Reasoning 
 
@@ -89,7 +91,7 @@ It is important to check all of the pipeline connections in addition to completi
 
 In order to test the new instance you have created you will need to update the old test files.
 
-The test directory under the main pipeline contains the tests which check the the pipeline is working correctly and data validation is occurring correctly. The validity test checks the rules in rules.csv are being applied appropriately. For both the ppo-pipeline and the ovt-pipeline, we used simplified input files and configurations to test the pipeline connections and validation were working. 
+The test directory under the main pipeline contains the tests which check the the pipeline is working correctly and data validation is occurring correctly. The validity test checks the rules in `rules.csv` are being applied appropriately. For both the ppo-pipeline and the ovt-pipeline, we used simplified input files and configurations to test the pipeline connections and validation were working. 
 
 These tests rely on the config subdirectory to check the connections of the pipeline. The config directory should be a copy of the main config file, this is so we can run tests from the pseudo-root and mimic the setup of our pipeline. 
 
@@ -101,10 +103,10 @@ ___
 
 The ovt-datapipeline is not complete, below are the known areas which must be updated in order for it to be functional. 
 
-The test_triplifier.py, fetch_reasoned.sparql and reasoner.config. still need to be updated. 
+The `test_triplifier.py`, `fetch_reasoned.sparql` and `reasoner.config`. still need to be updated. 
 
 The Data Loading step for using elastic search and blaze graph have not been updated for ovt. 
 
-Additionally, there are potential changes to be made in the preprocessor to account for mapping from the input data to class names based on the ontology that needs to occur during triplification. In the pro-pipeline this was done with phenophase_descriptions.csv and mapping.csv, there is currently no file in the ovt-pipeline with the same purpose as phenophase_descriptions.csv, but it will have to be added. 
+Additionally, there are potential changes to be made in the preprocessor to account for mapping from the input data to class names based on the ontology that needs to occur during triplification. In the pro-pipeline this was done with `phenophase_descriptions.csv` and `mapping.csv`, there is currently no file in the ovt-pipeline with the same purpose as `phenophase_descriptions.csv`, but it will have to be added. 
 
-There are several areas in the codebase where identical files are duplicated and stored in different locations. For example, test/data/invalid_input.csv was almost identical to test/invalid_data.csv. Another example is relations.csv and entity.csv existing in multiple locations. I did not determine which copies were necessary and which were redundant, I simply copied the ppo structure. 
+There are several areas in the codebase where identical files are duplicated and stored in different locations. For example, `test/data/invalid_input.csv` was almost identical to `test/invalid_data.csv`. Another example is entity.csv exists in `ppt-data-pipeline/config` and in `ppo-data-pipeline/projects/herbarium`. I did not determine which copies were necessary and which were redundant, I simply copied the ppo structure. 
