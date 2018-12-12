@@ -65,7 +65,7 @@ The processing pipeline implements the following steps:
 
 
 ### Install python
-Reccomended running python version 3.5.1 , installed using [pyenv](https://github.com/pyenv/pyenv)
+Reccomended running python version 3.5.1 , installed using the [pyenv](https://github.com/pyenv/pyenv) tool via 
 [MacOSX installation instructions](macosx.python.installation.md)
 
 The python dependencies are found in `requirements.txt`. These can be installed by running 
