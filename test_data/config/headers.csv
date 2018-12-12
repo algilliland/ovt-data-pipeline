@@ -1,1 +1,1 @@
-record_id, scientific_name, genus, specific_epithet, year, day_of_year, latitude, longitude, source, sub_source, phenophase_name, lower_count, upper_count, lower_percent, upper_percent, adjusted_ncep_reanalysis_monthly_mean_temp
+occurrenceid,recordnumber,genus,subgenus,specificepithet,eventdate,year,decimallatitude,decimallongitude,haslength,lengthtype,lengthinmm,lengthunitsinferred,hasmass,massing,massunitsinferred

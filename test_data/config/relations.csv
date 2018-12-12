@@ -1,5 +1,5 @@
 subject_entity_alias,predicate,object_entity_alias,notes
-plantStructurePresence,{has quality measurement},measurementDatum,
-plantStructurePresence,{quality of},wholePlant,
-wholePlant,{is_specified_input_of},phenologicalObservingProcess,
-phenologicalObservingProcess,{has_specified_output},measurementDatum,
+vertebrateScalarTrait,{quality of},vertebrateOrganism,
+vertebrateScalarTrait,{has quality datum},scalarMeasurementDatum,
+organismalTraitObsProc,{has_specified_output},scalarMeasurementDatum,
+vertebrateOrganism,{is_specified_input_of},organismalTraitObsProc,
