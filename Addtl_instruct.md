@@ -1,4 +1,4 @@
-These additional instructions build upon and are meant to supplement the instructions created by jdeck88, rodney757 and ramonawalls. These instructions give additional information for creating a new instance of the pipeline and add more details to supplemental instructions for those who want a deeper understanding of the pipeline, but are currently unfamiliar with it. The final notes indicate the current status of the ovt pipeline and what some of the next steps will be. 
+These additional instructions build upon and are meant to supplement the ppo pipeline instructions created by jdeck88, rodney757 and ramonawalls. The instructions below give additional information for creating a new instance of the pipeline and add more details to supplemental instructions for those who want a deeper understanding of the code, but are currently unfamiliar with the pipeline. The final portion of the notes indicate the current status of the ovt pipeline and what some of the next steps will need to be in order to get it running. 
 
 ---
 
@@ -16,7 +16,6 @@ https://github.com/pyenv/pyenv/issues/896
 
 ## Running the Process and Running Tests
 
-**
 As said in the main instructions, the process should be run from the root directory (vto-data-pipeline). Run the entire pipeline using `python -m process`. The -m option tells python process is a module.  
 
 You are able to run a single .py file by 
@@ -32,7 +31,7 @@ Run `Pip install requests` to download requests.
 
 If running a pip install does not work, try googling the package for additional help. 
 
-## Step One - Pre-processing
+## Step One: Pre-processing
 
 **Overview**
 
@@ -42,7 +41,7 @@ When creating a new pipeline instance for a different ontology, the headers conf
 
 You will also need to adapt the AbstractPreProcessor for your data. Inside the AbstractPreprocessor class, there is a list called headers which orders the columns of your data for writing to the output csv. This csv is the standardized output for the preprocessing step. 
 
-**Creating a new preprocessor** 
+**Creating a New Preprocessor** 
 
 Most likely you will have to create a new preprocessor for each dataset you are integrating, so that you can create the unique mapping from the input data to the expected configuration. The easiest way to do this is to create a PreProcessor that inherits from the AbstractPreProcessor. The AbstractPreprocesser contains the functionality to initialize the preprocessor, run the preprocessor, and basic IO. It is initialized with the input directory, output directory and sets the output file as data.csv in the output directory. The run method will check to see if the output directory exists and if it does not, it will create it. Then it will write the column headers to the csv, these are the labels you have placed in your headers list. The next call in run is to process_data, which is not implemented in the AbstractPreprocessor. You must implement process_data in your preprocessor so that your unique data can be formatted. Your process_data method needs to read your data, map the selected trait from each record to the expected column and it writes your data. See Pandas documentation for help using the read/write calls (read_csv/to_csv).
 
@@ -67,11 +66,21 @@ On MacOSX important step of activating virtual environment ***
 
 In order to test the new instance you have created you will need to update the old test files. 
 
-The test directory under the main pipeline contains the tests which check the configurations, triplifier and validity via the rules being applied appropriately. Each of these corresponds to a .py file in test. 
+The test directory under the main pipeline contains the tests which check the configurations, triplifier and validity via the rules being applied appropriately. Each of these corresponds to a .py file in test. For both the ppo and the ovt we used simplified input files and configurations to test the pipeline connections were working. The data-pipeline results can be 
 
 These tests rely on the config subdirectory to check the connections of the pipeline. The config directory should be a copy of the main config file, this is so we can run tests with a pseudo-root (explain differently?). This directory also has an additional file called pop-reasoned-no-imports.owl. 
 
 pytest is the package that we use to support automated testing of the pipeline. It searches for any files starting with test_ or ending with _test. This is a recursive search that will check all subdirectories from the point you start running your tests from. This is important to note when you start duplicating your test files. 
+
+## Step Two: Trilifier
+
+## Step Three: Reasoning 
+
+
+## Step Four: RdfCsv
+
+
+## Step Five: Data Loading
 
 ___
 
@@ -81,6 +90,6 @@ The test_triplifier.py, fetch_reasoned.sparql and reasoner.config. still need to
 
 The Data Loading step for using elastic search and blaze graph have not been updated for ovt. 
 
-There are several areas in the codebase where identical files are duplicated and stored in different locations. For example, test/data/invalid_input.csv was almost identical to test/invalid_data.csv. Another example is relations.csv and entity.csv existing in multiple locations. I did not determine which copies were necessary and which were redundant, I simply copied the ppo outline. 
+There are several areas in the codebase where identical files are duplicated and stored in different locations. For example, test/data/invalid_input.csv was almost identical to test/invalid_data.csv. Another example is relations.csv and entity.csv existing in multiple locations. I did not determine which copies were necessary and which were redundant, I simply copied the ppo structure. 
 
 
