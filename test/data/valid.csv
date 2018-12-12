@@ -1,2 +1,2 @@
-record_id,occurence_id,event_date,year,latitude,longitude,genus,subgenus,specific_epithet,has_length,has_mass,length_in_mm,length_type,length_units_inferred,mass_in_g,mass_units_inferred
-1,01,2001-06-15,2001.0,36.6676833,-106.47068329999999,Thamnophis,,elegans,1,0,391.0,snout-vent length,0.0,,,
+recordid,occurrenceid,genus,specificepithet,eventdate,year,decimallatitude,decimallongitude,lengthtype,lengthinmm
+26,http://arctos.database.museum/guid/MVZ:Herp:245699?seid=1329744,Sceloporus,occidentalis,2004-06-24,2004.0,37.84105,-119.49166000000001,snout-vent length,84.6
