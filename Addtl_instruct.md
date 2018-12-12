@@ -1,7 +1,6 @@
-10/10/18
-Author: Ali Gilliland 
+These additional instructions build upon and are meant to supplement the instructions created by jdeck88, rodney757 and ramonawalls. These instructions give additional information for creating a new instance of the pipeline and add more details to supplemental instructions for those who want a deeper understanding of the pipeline, but are currently unfamiliar with it. The final notes indicate the current status of the ovt pipeline and what some of the next steps will be. 
 
-Builds upon the instructions contributed to by jdeck88, rodney757 and ramonawalls.
+---
 
 # A high-throughput ontology-based pipeline for data integration
 
@@ -14,6 +13,24 @@ TODO: Add more support
 
 Discuss setting flags for Pyenv and also switching/checking python versions
 https://github.com/pyenv/pyenv/issues/896
+
+## Running the Process and Running Tests
+
+**
+As said in the main instructions, the process should be run from the root directory (vto-data-pipeline). Run the entire pipeline using `python -m process`. The -m option tells python process is a module.  
+
+You are able to run a single .py file by 
+When an import error occurs with the message 'module name cannot be found' and the module is a locally created module, try running with PYTHONPATH=../ python test_config.py. This instructs python to check the directory above as well for the module. 
+
+When an import error occurs for a package not created in ovt, it indicates the package was not available when python tried to run the file depending on it. Try fixing this error through a pip install for the package. This will attempt to download and install the package. 
+
+Example: 
+
+The requests module is required for oft-data-pipeline/process/utils.py. 
+
+Run `Pip install requests` to download requests. 
+
+If running a pip install does not work, try googling the package for additional help. 
 
 ## Step One - Pre-processing
 
@@ -35,18 +52,6 @@ There are a few different points that must be updated so that the new ontology a
 # TODO: discuss multiprocessing (more)  
 multiprocessing.Pool() objects are not conte/Users/algilliland/Documents/VertPLxt managers in python < Python 3.3, so you cannot use the """ with """ key word. You will need to use Python 3.3+ or manage your context explicitly. It is not necessary to worry about this as long as you utilize the recommended Python version 3.5.1.  
 
-## Running the Process
-
-**
-run process from the root dir (vto-data-pipeline) using python -m process 
-
-Pip install requests because it was not available when trying to run it! Need it for process/utils.py import requests 
-
-pip install rfc3987
-
-Basically if you hit an import error from a import dependency google installing dependency or attempt pip install dependency. 
-
-
 ## Updating the Pipeline to Accept a New Ontology 
 
 Ontopilot is utilized to manage ontologies, you can check out their [wiki](https://github.com/stuckyb/ontopilot/wiki/Ontology-development#overview).
@@ -54,3 +59,28 @@ Ontopilot is utilized to manage ontologies, you can check out their [wiki](https
 Once you have your ontology completed, you are able to integrate it with the data pipeline. process/config.py expects a default ontology to be referenced. The OVT's default ontology is hosted on GitHub. 
 
 Additional preprocessing can be done to accomplish reasoning that is intractable with ELK reasoning. For example, ppo-data-pipeline adds additional reasoning on the phenophase_descriptions to account for presence traits. 
+
+## Testing 
+It is important to check all of the pipeline connections in addition to completing data checks. 
+
+On MacOSX important step of activating virtual environment *** 
+
+In order to test the new instance you have created you will need to update the old test files. 
+
+The test directory under the main pipeline contains the tests which check the configurations, triplifier and validity via the rules being applied appropriately. Each of these corresponds to a .py file in test. 
+
+These tests rely on the config subdirectory to check the connections of the pipeline. The config directory should be a copy of the main config file, this is so we can run tests with a pseudo-root (explain differently?). This directory also has an additional file called pop-reasoned-no-imports.owl. 
+
+pytest is the package that we use to support automated testing of the pipeline. It searches for any files starting with test_ or ending with _test. This is a recursive search that will check all subdirectories from the point you start running your tests from. This is important to note when you start duplicating your test files. 
+
+___
+
+The ovt-datapipeline is not complete, below are the known areas which must be updated in order for it to be functional. 
+
+The test_triplifier.py, fetch_reasoned.sparql and reasoner.config. still need to be updated. 
+
+The Data Loading step for using elastic search and blaze graph have not been updated for ovt. 
+
+There are several areas in the codebase where identical files are duplicated and stored in different locations. For example, test/data/invalid_input.csv was almost identical to test/invalid_data.csv. Another example is relations.csv and entity.csv existing in multiple locations. I did not determine which copies were necessary and which were redundant, I simply copied the ppo outline. 
+
+
