@@ -9,7 +9,12 @@ A flexible, scalable pipeline for integration of observation data from multiple 
 Additional instructions to help those unfamiliar with the data pipeline in order to create a new instance.
 
 ## Getting Started 
-TODO: Add more support 
+
+** Familiarize Yourself with the Codebase ** 
+You can begin by cloning or forking this repository (or the ppo pipeline) and installing it on your laptop or server.  The next step is reading through the rest of the documentation and familiarizing yourself with the [configuration files](https://github.com/biocodellc/ppo-data-pipeline/blob/master/README.md#config-files) 
+
+** Set Up Your Environment ** 
+See [Dependencies] (https://github.com/algilliland/ovt-data-pipeline#dependencies) on the main readme in order to begin setup of your environment. 
 
 Discuss setting flags for Pyenv and also switching/checking python versions
 https://github.com/pyenv/pyenv/issues/896
@@ -17,6 +22,8 @@ https://github.com/pyenv/pyenv/issues/896
 ## Running the Process and Running Tests
 
 As said in the main instructions, the process should be run from the root directory (vto-data-pipeline). Run the entire pipeline using `python -m process`. The -m option tells python process is a module.  
+
+Look at [Usage](https://github.com/algilliland/ovt-data-pipeline#usage)on the main readme in order to see the different ways you can run the pipeline. 
 
 You are able to run a single .py file by 
 When an import error occurs with the message 'module name cannot be found' and the module is a locally created module, try running with PYTHONPATH=../ python test_config.py. This instructs python to check the directory above as well for the module. 
@@ -51,14 +58,6 @@ There are a few different points that must be updated so that the new ontology a
 # TODO: discuss multiprocessing (more)  
 multiprocessing.Pool() objects are not conte/Users/algilliland/Documents/VertPLxt managers in python < Python 3.3, so you cannot use the """ with """ key word. You will need to use Python 3.3+ or manage your context explicitly. It is not necessary to worry about this as long as you utilize the recommended Python version 3.5.1.  
 
-## Updating the Pipeline to Accept a New Ontology 
-
-Ontopilot is utilized to manage ontologies, you can check out their [wiki](https://github.com/stuckyb/ontopilot/wiki/Ontology-development#overview).
-
-Once you have your ontology completed, you are able to integrate it with the data pipeline. process/config.py expects a default ontology to be referenced. The OVT's default ontology is hosted on GitHub. 
-
-Additional preprocessing can be done to accomplish reasoning that is intractable with ELK reasoning. For example, ppo-data-pipeline adds additional reasoning on the phenophase_descriptions to account for presence traits. 
-
 ## Testing 
 It is important to check all of the pipeline connections in addition to completing data checks. 
 
@@ -72,10 +71,17 @@ These tests rely on the config subdirectory to check the connections of the pipe
 
 pytest is the package that we use to support automated testing of the pipeline. It searches for any files starting with test_ or ending with _test. This is a recursive search that will check all subdirectories from the point you start running your tests from. This is important to note when you start duplicating your test files. 
 
-## Step Two: Trilifier
+## Step Two: Triplifier
 
 ## Step Three: Reasoning 
 
+** Updating the Pipeline to Accept a New Ontology**
+
+Ontopilot is utilized to manage ontologies, you can check out their [wiki](https://github.com/stuckyb/ontopilot/wiki/Ontology-development#overview).
+
+Once you have your ontology completed, you are able to integrate it with the data pipeline. process/config.py expects a default ontology to be referenced. The OVT's default ontology is hosted on GitHub. 
+
+Additional preprocessing can be done to accomplish reasoning that is intractable with ELK reasoning. For example, ppo-data-pipeline adds additional reasoning on the phenophase_descriptions to account for presence traits. 
 
 ## Step Four: RdfCsv
 
@@ -83,6 +89,8 @@ pytest is the package that we use to support automated testing of the pipeline. 
 ## Step Five: Data Loading
 
 ___
+
+## Future Directions 
 
 The ovt-datapipeline is not complete, below are the known areas which must be updated in order for it to be functional. 
 
