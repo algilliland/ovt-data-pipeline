@@ -8,10 +8,6 @@ longitude,http://rs.tdwg.org/dwc/terms/decimalLongitude,organismalTraitObserving
 genus,http://rs.tdwg.org/dwc/terms/genus,vertebrateOrganism,
 subgenus,http://rs.tdwg.org/dwc/terms/subgenus,vertebrateOrganism,
 specific_epithet,http://rs.tdwg.org/dwc/terms/specificEpithet,vertebrateOrganism,
-has_length YES NO
-has_life_stage REMOVE THIS COLUMN
-has_mass YES NO
-has_sex REMOVE THIS COLUMN
 length_in_mm,{has value},scalarMeasurementDatum,
 length_type,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,vertebrateScalarTrait,"Using rdf:type indicates the values will be object properties, in this case defined by a list association in rules.csv."
 length_units_inferred,{units inferred},scalarMeasurementDatum,
